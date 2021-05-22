@@ -354,7 +354,7 @@ export default class Display extends Component {
             </Padding>
           </Container>
         )}
-        {!this.state.loading && (
+        {!this.state.loading && this.state.creationsState && (
           <Container>
             <Padding>
               <div className={styles['secondary-menu']}>
