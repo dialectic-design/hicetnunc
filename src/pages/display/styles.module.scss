@@ -25,6 +25,13 @@
   }
 }
 
+.secondary-menu {
+  padding: 6px 0;
+  & > * {
+    margin-right: 1em;
+  }
+}
+
 .container {
   position: relative;
   .number {

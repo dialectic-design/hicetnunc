@@ -23,6 +23,9 @@ const App = () => {
 
   return (
     <HicetnuncContextProvider>
+      <div style={{background: "blue", color: "white"}}>
+        <p>DEMO SERVER FOR <a href="https://www.hicathon.xyz/" style={{color: "white", fontStyle: "italic"}} >HICATHON</a> TEAM 1.1</p>
+      </div>
       <Header />
       <FeedbackComponent />
       <Switch>

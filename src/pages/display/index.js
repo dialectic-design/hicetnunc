@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Primary } from '../../components/button'
+import { Button, Primary, Secondary } from '../../components/button'
 import { HicetnuncContext } from '../../context/HicetnuncContext'
 import { Page, Container, Padding } from '../../components/layout'
 import { Loading } from '../../components/loading'
@@ -353,6 +353,25 @@ export default class Display extends Component {
               <Loading />
             </Padding>
           </Container>
+        )}
+        {!this.state.loading && (
+          <Container>
+            <Padding>
+              <div className={styles['secondary-menu']}>
+                <Button>
+                  <Secondary>
+                  Primary
+                  </Secondary>
+                </Button>
+                <Button>
+                  <Secondary>
+                  Secondary
+                  </Secondary>
+                  
+                </Button>
+              </div>
+            </Padding>
+        </Container>
         )}
 
         {!this.state.loading && this.state.creationsState && (
