@@ -11,13 +11,21 @@ import { PATH } from '../../constants'
 import { VisuallyHidden } from '../../components/visually-hidden'
 import { GetUserMetadata } from '../../data/api'
 import { ResponsiveMasonry } from '../../components/responsive-masonry'
+import Select from '../../components/select'
 import styles from './styles.module.scss'
+import _ from "lodash"
 
 const axios = require('axios')
 
 const sortByTokenId = (a, b) => {
   return b.token_id - a.token_id
 }
+
+const sortOptions = [
+  {value: "newest", label: "newest", sortFunction: (arr) => { return _.sortBy(arr, "token_id").reverse() }},
+  {value: "oldest", label: "oldest", sortFunction: (arr) => { return _.sortBy(arr, "token_id") }},
+  {value: "random", label: "random", sortFunction: (arr) => { return _.shuffle(arr) }}
+]
 
 export default class Display extends Component {
   static contextType = HicetnuncContext
@@ -40,6 +48,7 @@ export default class Display extends Component {
     collectionState: false,
     marketState: false,
     hdao: 0,
+    sorting: "newest"
   }
 
   componentWillMount = async () => {
@@ -176,7 +185,12 @@ export default class Display extends Component {
     //this.props.history.push(`/tz/${this.state.wallet}/market`)
   }
 
+  
+
   render() {
+    const sortFunction = _.find(sortOptions, p => p.value === this.state.sorting).sortFunction
+    console.log(sortFunction)
+    console.log(this.state.creations)
     return (
       <Page title={this.state.alias}>
         <Container>
@@ -355,29 +369,44 @@ export default class Display extends Component {
           </Container>
         )}
         {!this.state.loading && this.state.creationsState && (
-          <Container>
-            <Padding>
-              <div className={styles['secondary-menu']}>
-                <Button>
-                  <Secondary>
-                  Primary
-                  </Secondary>
-                </Button>
-                <Button>
-                  <Secondary>
-                  Secondary
-                  </Secondary>
-                  
-                </Button>
-              </div>
-            </Padding>
-        </Container>
+          <div style={{marginTop: -40}}>
+            <Container>
+              <Padding>
+                <div className={styles['secondary-menu']} >
+                  <p>Sort by:</p>
+                  <div>
+                  <Select
+                    defaultValue={this.state.sorting}
+                    options={sortOptions}
+                    nonCancelable={true}
+                    width="110px"
+                    onChange={(e, value) => { this.setState({sorting: value}) }}
+                    />
+                  </div>
+                </div>
+                {false && (
+                  <div>
+                  {sortOptions.map((option, i) => {
+                      return (
+                        <Button>
+                          <Secondary>
+                            {option.label}
+                          </Secondary>
+                        </Button>
+                      )
+                    })}
+                  </div>
+                )}
+                
+              </Padding>
+            </Container>
+          </div>
         )}
 
         {!this.state.loading && this.state.creationsState && (
           <Container xlarge>
             <ResponsiveMasonry>
-              {this.state.creations.map((nft, i) => {
+              {sortFunction(this.state.creations).map((nft, i) => {
                 const { mimeType, uri } = nft.token_info.formats[0]
 
                 return (
@@ -403,7 +432,7 @@ export default class Display extends Component {
         {!this.state.loading && this.state.collectionState && (
           <Container xlarge>
             <ResponsiveMasonry>
-              {this.state.collection.map((nft, i) => {
+              {sortFunction(this.state.collection).map((nft, i) => {
                 const { mimeType, uri } = nft.token_info.formats[0]
                 return (
                   <Button

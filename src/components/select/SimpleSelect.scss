@@ -1,0 +1,25 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+
+.mySelectDefault {
+  position: relative;
+  vertical-align: bottom;
+}
+
+/*TODO: Extract out variable styles into separate class: e.g. roundedCorners*/
+.mySelectDefault .fieldset {
+  position: relative; /*all the other pieces of this component (legend, options, selectedvaluedisplay) are all inside so we want to have their placement be relative*/
+  width: 100%; /*fieldset is inside the top container .mySelectDefault...so this should probably always be 100%...widths are set on the top container and can be managed with component props*/
+  color: var(--text-color);
+  font-weight: bold;
+  margin-top: 0.55em; /*needed to space next items below .5em should nearly overlap with something above it*/
+  padding: 0.2em 0.2em 0.2em 0.2em; /*the right padding is much larger to allow for the absolute positioning of the dropdowncontainer*/
+  padding-right: 0em;
+  min-height: 2.2em; /*this is here to handle empty state not shrinking the field set too much. You can remove it this if you don't mind an empty select being compressed.*/
+  min-width: 50px;
+
+  /*these 2 make placement and alignment of selected values and the cancel button easy*/
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,40 @@
+$bg-color: var(--background-color);
+.mySelectDefault .mySelectDefaultOptions {
+  --display: none;
+  text-align: left; /*you should align your options differently if you really want to*/
+
+  /*these 3 entries place the option container directly below the selection box*/
+  position: absolute;
+  background-color: var(--background-color);
+  top: 100%;
+  left: 0;
+
+  width: 100%; /*option list is officially inside the "fieldset" box so this width ensures the options are the same width as the selection ctonatiner...which isn't necessary*/
+  max-height: 400px; /*having some max height is not strictly necessary, but usually preferable for user experience.*/
+  overflow-y: scroll; /*ensures options are scrollable if there are more than height of container*/
+
+
+  z-index: 1000; /*ensure that container for options is on top of everything else*/
+}
+.mySelectDefault.selectOpen .mySelectDefaultOptions {
+  display: block;
+}
+.mySelectDefault.selectClosed .mySelectDefaultOptions {
+  display: none;
+}
+.mySelectDefault .mySelectDefaultOptions div {
+  padding: 0.5em 0 0.5em 0.5em;
+  cursor: pointer;
+}
+
+.mySelectDefault .mySelectDefaultOptions div.focused_option {
+  background-color: var(--background-color);
+}
+
+.mySelectDefault .mySelectDefaultOptions div:hover {
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+.mySelectDefault .mySelectDefaultOptions div:active {
+  background-color: var(--background-color);
+}
