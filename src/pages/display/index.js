@@ -189,8 +189,6 @@ export default class Display extends Component {
 
   render() {
     const sortFunction = _.find(sortOptions, p => p.value === this.state.sorting).sortFunction
-    console.log(sortFunction)
-    console.log(this.state.creations)
     return (
       <Page title={this.state.alias}>
         <Container>
@@ -368,12 +366,11 @@ export default class Display extends Component {
             </Padding>
           </Container>
         )}
-        {!this.state.loading && this.state.creationsState && (
+        {!this.state.loading && (
           <div style={{marginTop: -40}}>
             <Container>
               <Padding>
                 <div className={styles['secondary-menu']} >
-                  <p>Sort by:</p>
                   <div>
                   <Select
                     defaultValue={this.state.sorting}
