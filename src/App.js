@@ -23,8 +23,8 @@ const App = () => {
 
   return (
     <HicetnuncContextProvider>
-      <div style={{background: "blue", color: "white"}}>
-        <p>DEMO SERVER FOR <a href="https://www.hicathon.xyz/" style={{color: "white", fontStyle: "italic"}} >HICATHON</a> WG 1.1</p>
+      <div style={{background: "blue", color: "white", position: "fixed", left: 0, right: 0, bottom: 0, zIndex: 10000, padding: 3}}>
+        <p>DEMO SERVER FOR <a href="https://www.hicathon.xyz/" style={{color: "white", fontStyle: "italic"}} >HICATHON</a> WG 1.1 - Current demo: <span  style={{fontWeight: "bold"}}>Sorting options on artist page</span></p>
       </div>
       <Header />
       <FeedbackComponent />
