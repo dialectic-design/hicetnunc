@@ -10,9 +10,6 @@ $bg-color: var(--background-color);
   left: 0;
 
   width: 100%; /*option list is officially inside the "fieldset" box so this width ensures the options are the same width as the selection ctonatiner...which isn't necessary*/
-  max-height: 400px; /*having some max height is not strictly necessary, but usually preferable for user experience.*/
-  overflow-y: scroll; /*ensures options are scrollable if there are more than height of container*/
-
 
   z-index: 1000; /*ensure that container for options is on top of everything else*/
 }
